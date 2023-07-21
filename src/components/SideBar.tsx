@@ -17,7 +17,7 @@ export const SideBar = () => {
 
         <button className='flex items-center justify-center gap-2 text-green-500  
         font-bold border-green-500
-         border-[1.5px] my-6 p-[1.5rem_2rem]  rounded-xl '>
+         border-[1.5px] my-6 p-[1rem_2rem]  rounded-xl hover:bg-green-500 hover:text-white ease-in duration-300 active:bg-green-800 '>
             <PiNotePencilLight className='w-5 h-auto' />
             Editar seu perfil
         </button>
