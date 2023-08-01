@@ -34,14 +34,11 @@ export const Post = () => {
           className='resize-none peer w-full h-24  rounded-lg p-4 bg-gray-900 border-[1.5px] border-[#00B37E] leading-snug mb-3 '
           placeholder='Deixe seu comentario ' />
         <button className='
-            py-2 px-3 mt-4 rounded-lg peer-focus:visible peer-focus:max-h-none invisible bg-green-500 font-bold cursor-pointer duration-200 hover:bg-green-400 ' type="submit">Comentar</button>
+            py-2 px-3 mt-4 rounded-lg peer-focus:visible peer-focus:max-h-none invisible bg-green-700 font-bold cursor-pointer duration-200 hover:bg-green-600 ' type="submit">Comentar</button>
 
 
       </form>
-
-      <div>
         <CommentPost/>
-      </div>
     </article>
   )
 }
