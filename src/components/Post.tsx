@@ -1,13 +1,17 @@
 import React from 'react'
 import { CommentPost } from './CommentPost'
+import { Avatar } from './Avatar'
 
 export const Post = () => {
   return (
     <article className='rounded-lg px-10 pt-10 pb-5 bg-gray-800 ' >
       <header className='flex justify-between items-center ' >
         <div className='flex space-x-3 '>
-          <img className='w-[calc(2.8rem+12px)] h-[calc(2.8rem+12px)] rounded-md border-4 border-gray-800 outline outline-2 outline-green-400 box ' src="https://avatars.githubusercontent.com/u/122836400?v=4" />
-          <div>
+
+          <Avatar className='w-[calc(3rem+12px)] h-[calc(3rem+12px)] 
+            rounded-md  border-4 border-gray-800 
+            outline outline-2 outline-green-400' src='https://avatars.githubusercontent.com/u/122836400?v=4'/>
+          <div className='flex flex-col justify-center'>
             <h3 >João Pedro</h3>
             <p>Front-end Developer</p>
           </div>
