@@ -17,7 +17,7 @@ export default function Home() {
               author={post.author.name}
               role={post.author.role}
               avatarUrl={post.author.avatarUrl}
-              comments={post.content}
+              postContent={post.content}
             />
           ))}
         </main>

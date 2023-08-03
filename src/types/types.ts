@@ -5,6 +5,19 @@ export interface avatar  {
 }
 
 
+ export interface CommentItem {
+    type: "paragraph" | "link";
+    content: string;
+  }
+  
+ export interface PostProps {
+    author: string;
+    role?: string;
+    avatarUrl: string;
+    postContent: CommentItem[];
+  }
+
+
 export interface Post {
 id: number;
 author: {

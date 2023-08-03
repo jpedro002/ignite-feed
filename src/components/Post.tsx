@@ -1,25 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { CommentPost } from "./CommentPost";
 import { Avatar } from "./Avatar";
+import { CommentItem, PostProps } from "@/types/types";
 
-interface CommentItem {
-  type: "paragraph" | "link";
-  content: string;
-}
-
-interface PostProps {
-  author: string;
-  role?: string;
-  avatarUrl: string;
-  comments: CommentItem[];
-}
 
 export const Post: React.FC<PostProps> = ({
   author,
   role,
   avatarUrl,
-  comments,
+  postContent,
 }) => {
+
+  const [comment, setComment] = useState([1,2,3])
+
+
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
       <header className="flex justify-between items-center">
@@ -38,7 +32,7 @@ export const Post: React.FC<PostProps> = ({
         <time dateTime="">publicado há 1h</time>
       </header>
       <div className="space-y-2 mt-4 leading-relaxed text-gray-300">
-        {comments.map((item: CommentItem, index: number) => {
+        {postContent.map((item: CommentItem, index: number) => {
           if (item.type === "paragraph") {
             return <p key={index}>{item.content}</p>;
           }
@@ -46,7 +40,7 @@ export const Post: React.FC<PostProps> = ({
         })}
 
         <p className="space-x-2">
-          {comments.map((item: CommentItem, index: number) => {
+          {postContent.map((item: CommentItem, index: number) => {
             if (item.type === "link") {
               return (
                 <a
