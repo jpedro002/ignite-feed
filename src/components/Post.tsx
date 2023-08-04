@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { CommentPost } from "./CommentPost";
 import { Avatar } from "./Avatar";
-import { CommentItem, PostProps } from "@/types/types";
-
+import { PostProps, CommentItem } from "@/types/types";
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -10,9 +9,17 @@ export const Post: React.FC<PostProps> = ({
   avatarUrl,
   postContent,
 }) => {
+  const [comments, setComments] = useState<CommentItem[]>([]);
 
-  const [comment, setComment] = useState([1,2,3])
-
+  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newCommentContent = event.currentTarget.commentPost.value.trim();
+    if (newCommentContent) {
+      const newComment = { type: "paragraph", content: newCommentContent };
+      setComments((prevComments) => [...prevComments, newComment]);
+      event.currentTarget.commentPost.value = "";
+    }
+  };
 
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
@@ -32,7 +39,7 @@ export const Post: React.FC<PostProps> = ({
         <time dateTime="">publicado há 1h</time>
       </header>
       <div className="space-y-2 mt-4 leading-relaxed text-gray-300">
-        {postContent.map((item: CommentItem, index: number) => {
+        {postContent.map((item, index) => {
           if (item.type === "paragraph") {
             return <p key={index}>{item.content}</p>;
           }
@@ -40,7 +47,7 @@ export const Post: React.FC<PostProps> = ({
         })}
 
         <p className="space-x-2">
-          {postContent.map((item: CommentItem, index: number) => {
+          {postContent.map((item, index) => {
             if (item.type === "link") {
               return (
                 <a
@@ -53,13 +60,17 @@ export const Post: React.FC<PostProps> = ({
               );
             }
             return null;
-          })} 
+          })}
         </p>
 
-        <form className="w-full mt-6 pt-6 border-t-2 border-t-gray-600  flex flex-col items-start space-y-1">
+        <form
+          onSubmit={handleSubmitComment}
+          className="w-full mt-6 pt-6 border-t-2 border-t-gray-600  flex flex-col items-start space-y-1"
+        >
           <textarea
             className="resize-none peer w-full h-24  rounded-lg p-4 bg-gray-900 border-[1.5px] border-[#00B37E] leading-snug mb-3"
             placeholder="Deixe seu comentario"
+            name="commentPost"
           />
           <button
             className="
@@ -69,9 +80,9 @@ export const Post: React.FC<PostProps> = ({
             Comentar
           </button>
         </form>
-        <CommentPost />
-        <CommentPost />
-        <CommentPost />
+        {comments.map((comment, index) => (
+          <CommentPost key={index} content={comment.content} />
+        ))}
       </div>
     </article>
   );

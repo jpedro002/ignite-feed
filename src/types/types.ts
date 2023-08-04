@@ -5,7 +5,7 @@ export interface avatar  {
 }
 
 
- export interface CommentItem {
+ export interface postContent {
     type: "paragraph" | "link";
     content: string;
   }
@@ -14,7 +14,7 @@ export interface avatar  {
     author: string;
     role?: string;
     avatarUrl: string;
-    postContent: CommentItem[];
+    postContent: postContent[];
   }
 
 

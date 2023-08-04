@@ -3,8 +3,11 @@ import {BsTrash3} from 'react-icons/bs'
 import {AiOutlineLike} from 'react-icons/ai'
 import { Avatar } from './Avatar'
 
+interface commentContent {
+    content:string
+}
 
-export const CommentPost = () => {
+export const CommentPost = ({content}:commentContent) => {
 
 
     const [like,setLike] = useState(0)
@@ -24,7 +27,7 @@ export const CommentPost = () => {
                     </div>
                     <button title='Botão de deletar' ><BsTrash3/></button>
                 </header>
-                <p className='text-gray-300   '>Muito bom Devon, parabéns!! 👏👏</p>
+                <p className='text-gray-300   '>{content}</p>
             </div>
             <footer className='flex space-x-4 items-center       '>
                 <AiOutlineLike className='h-5 w-5 text-slate-500    '  onClick={() => setLike(like => like + 1 ) }  />
