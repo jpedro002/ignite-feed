@@ -30,3 +30,8 @@ content: Array<{
     content: string;
 }>;
 }
+
+
+export interface commentContent {
+  content:string
+}

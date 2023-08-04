@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CommentPost } from "./CommentPost";
 import { Avatar } from "./Avatar";
-import { PostProps, CommentItem } from "@/types/types";
+import { PostProps, commentContent } from "@/types/types";
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -9,7 +9,7 @@ export const Post: React.FC<PostProps> = ({
   avatarUrl,
   postContent,
 }) => {
-  const [comments, setComments] = useState<CommentItem[]>([]);
+  const [comments, setComments] = useState<commentContent[]>([]);
 
   const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
