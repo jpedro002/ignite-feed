@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { CommentPost } from "./CommentPost";
-import { Avatar } from "./Avatar";
-import { PostProps, commentContent } from "@/types/types";
+import React, { useState } from "react"
+import { CommentPost } from "./CommentPost"
+import { Avatar } from "./Avatar"
+import { PostProps, commentContent } from "@/types/types"
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -9,17 +9,17 @@ export const Post: React.FC<PostProps> = ({
   avatarUrl,
   postContent,
 }) => {
-  const [comments, setComments] = useState<commentContent[]>([]);
+  const [comments, setComments] = useState<commentContent[]>([])
 
   const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const newCommentContent = event.currentTarget.commentPost.value.trim();
+    event.preventDefault()
+    const newCommentContent = event.currentTarget.commentPost.value.trim()
     if (newCommentContent) {
-      const newComment = { type: "paragraph", content: newCommentContent };
-      setComments((prevComments) => [...prevComments, newComment]);
-      event.currentTarget.commentPost.value = "";
+      const newComment = {content: newCommentContent }
+      setComments((prevComments) => [...prevComments, newComment])
+      event.currentTarget.commentPost.value = ""
     }
-  };
+  }
 
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
@@ -41,9 +41,9 @@ export const Post: React.FC<PostProps> = ({
       <div className="space-y-2 mt-4 leading-relaxed text-gray-300">
         {postContent.map((item, index) => {
           if (item.type === "paragraph") {
-            return <p key={index}>{item.content}</p>;
+            return <p key={index}>{item.content}</p>
           }
-          return null;
+          return null
         })}
 
         <p className="space-x-2">
@@ -57,9 +57,9 @@ export const Post: React.FC<PostProps> = ({
                 >
                   {item.content}
                 </a>
-              );
+              )
             }
-            return null;
+            return null
           })}
         </p>
 
@@ -85,5 +85,5 @@ export const Post: React.FC<PostProps> = ({
         ))}
       </div>
     </article>
-  );
-};
+  )
+}
