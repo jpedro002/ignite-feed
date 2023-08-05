@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import {BsTrash3} from 'react-icons/bs'
 import {AiOutlineLike} from 'react-icons/ai'
 import { Avatar } from './Avatar'
-import { commentContent } from '@/types/types'
 
 
+export interface commentContent {
+    content: string;
+  }
+  
 
 export const CommentPost = ({content}:commentContent) => {
 

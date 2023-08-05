@@ -1,8 +1,7 @@
-import React, { useState } from "react"
-import { CommentPost } from "./CommentPost"
-import { Avatar } from "./Avatar"
-import { PostProps, commentContent } from "@/types/types"
-import useFetch from "@/hooks"
+import React, { useState } from "react";
+import { CommentPost } from "./CommentPost";
+import { Avatar } from "./Avatar";
+import { PostProps } from "@/types/types";
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -10,22 +9,17 @@ export const Post: React.FC<PostProps> = ({
   avatarUrl,
   postContent,
 }) => {
-  const [comments, setComments] = useState<commentContent[]>([])
+  const [comments, setComments] = useState<string[]>([]);
+  const [newCommentContent, setNewCommentContent] = useState("");
 
   const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const newCommentContent = event.currentTarget.commentPost.value.trim()
-    if (newCommentContent) {
-      const newComment = {content: newCommentContent }
-      setComments((prevComments) => [...prevComments, newComment])
-      event.currentTarget.commentPost.value = ""
+    event.preventDefault();
+    const trimmedComment = newCommentContent.trim();
+    if (trimmedComment) {
+      setComments((prevComments) => [...prevComments, trimmedComment]);
+      setNewCommentContent("");
     }
-  }
-
-  const { data, loading, error } = useFetch('https://64cce0cc2eafdcdc851a6823.mockapi.io/post')
-
-  console.log(data,'----','123');
-  
+  };
 
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
@@ -45,29 +39,7 @@ export const Post: React.FC<PostProps> = ({
         <time dateTime="">publicado há 1h</time>
       </header>
       <div className="space-y-2 mt-4 leading-relaxed text-gray-300">
-        {postContent.map((item, index) => {
-          if (item.type === "paragraph") {
-            return <p key={index}>{item.content}</p>
-          }
-          return null
-        })}
-
-        <p className="space-x-2">
-          {postContent.map((item, index) => {
-            if (item.type === "link") {
-              return (
-                <a
-                  className="text-green-500 hover:underline hover:text-green-300"
-                  href=""
-                  key={index}
-                >
-                  {item.content}
-                </a>
-              )
-            }
-            return null
-          })}
-        </p>
+        <p>{postContent}</p>
 
         <form
           onSubmit={handleSubmitComment}
@@ -76,7 +48,8 @@ export const Post: React.FC<PostProps> = ({
           <textarea
             className="resize-none peer w-full h-24  rounded-lg p-4 bg-gray-900 border-[1.5px] border-[#00B37E] leading-snug mb-3"
             placeholder="Deixe seu comentario"
-            name="commentPost"
+            value={newCommentContent}
+            onChange={(event) => setNewCommentContent(event.target.value)}
           />
           <button
             className="
@@ -87,9 +60,9 @@ export const Post: React.FC<PostProps> = ({
           </button>
         </form>
         {comments.map((comment, index) => (
-          <CommentPost key={index} content={comment.content} />
+          <CommentPost key={index} content={comment} />
         ))}
       </div>
     </article>
-  )
-}
+  );
+};
