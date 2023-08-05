@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { CommentPost } from "./CommentPost"
 import { Avatar } from "./Avatar"
 import { PostProps, commentContent } from "@/types/types"
+import useFetch from "@/hooks"
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -20,6 +21,11 @@ export const Post: React.FC<PostProps> = ({
       event.currentTarget.commentPost.value = ""
     }
   }
+
+  const { data, loading, error } = useFetch('https://64cce0cc2eafdcdc851a6823.mockapi.io/post')
+
+  console.log(data,'----','123');
+  
 
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
