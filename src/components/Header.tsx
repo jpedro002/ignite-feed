@@ -6,7 +6,7 @@ export const Header = () => {
 
 return (
     <div className="text-white  w-screen  h-[14vh]  flex justify-center items-center ">
-        <img 
+        <Image 
         className='w-10 h-10'
         src="/images/logo.svg"
         alt='logo ignite'

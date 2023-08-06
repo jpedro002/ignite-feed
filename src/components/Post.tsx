@@ -24,9 +24,9 @@ export const Post: React.FC<PostProps> = ({
 
   const handleDeleteComment = (index:number) => {
     setComments((prevComments) => {
-      return prevComments.filter((comentario, i) => i !== index);
-    });
-  };
+      return prevComments.filter((comentario, i) => i !== index)
+    })
+  }
   
   
 
