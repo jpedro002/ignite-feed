@@ -1,14 +1,14 @@
 import { post } from "@/types/types";
 import { useState, useEffect } from "react";
 
-interface FetchResponse<T> {
+interface FetchResponse {
   data: post[];
   loading: boolean;
   error: Error ;
 }
 
-const useFetch = <T>(url: string) => {
-  const [data, setData] = useState<T | null>(null);
+const useFetch = (url: string):FetchResponse => {
+  const [data, setData] = useState<post[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -19,7 +19,7 @@ const useFetch = <T>(url: string) => {
         if (!response.ok) {
           throw new Error("Erro ao buscar dados da API");
         }
-        const data = (await response.json()) as T;
+        const data = (await response.json()) as post[];
         setData(data);
       } catch (error) {
         setError(error);
