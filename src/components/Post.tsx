@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { CommentPost } from "./CommentPost";
-import { Avatar } from "./Avatar";
-import { PostProps } from "@/types/types";
+import React, { useState } from "react"
+import { CommentPost } from "./CommentPost"
+import { Avatar } from "./Avatar"
+import { PostProps } from "@/types/types"
 
 export const Post: React.FC<PostProps> = ({
   author,
@@ -9,17 +9,26 @@ export const Post: React.FC<PostProps> = ({
   avatarUrl,
   postContent,
 }) => {
-  const [comments, setComments] = useState<string[]>([]);
-  const [newCommentContent, setNewCommentContent] = useState("");
+  const [comments, setComments] = useState<string[]>([])
+  const [newCommentContent, setNewCommentContent] = useState("")
 
-  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const trimmedComment = newCommentContent.trim();
+  const handleSubmitComment = (event) => {
+    event.preventDefault()
+    const trimmedComment = newCommentContent.trim()
     if (trimmedComment) {
-      setComments((prevComments) => [...prevComments, trimmedComment]);
-      setNewCommentContent("");
+      setComments((prevComments) => [...prevComments, trimmedComment])
+      setNewCommentContent("")
     }
+    
+  }
+
+  const handleDeleteComment = (index:number) => {
+    setComments((prevComments) => {
+      return prevComments.filter((comentario, i) => i !== index);
+    });
   };
+  
+  
 
   return (
     <article className="rounded-lg px-10 pt-10 pb-5 bg-gray-800">
@@ -36,7 +45,7 @@ export const Post: React.FC<PostProps> = ({
             <p>{role}</p>
           </div>
         </div>
-        <time dateTime="">publicado há 1h</time>
+        <time className="md:visible invisible" dateTime="">publicado há 1h</time>
       </header>
       <div className="space-y-2 mt-4 leading-relaxed text-gray-300">
         <p>{postContent}</p>
@@ -60,9 +69,9 @@ export const Post: React.FC<PostProps> = ({
           </button>
         </form>
         {comments.map((comment, index) => (
-          <CommentPost key={index} content={comment} />
+          <CommentPost key={index} content={comment} onClick={() => handleDeleteComment(index)} />
         ))}
       </div>
     </article>
-  );
-};
+  )
+}

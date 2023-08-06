@@ -6,11 +6,11 @@ export interface PostProps {
 }
 
 export interface post {
-  id?: number;
-  avatarUrl?: string;
-  name?: string;
-  role?: string;
-  paragraph?: string;
-  link?: string;
+  id: number;
+  avatarUrl: string;
+  name: string;
+  role: string;
+  paragraph: string;
+  link: string;
 }
 
