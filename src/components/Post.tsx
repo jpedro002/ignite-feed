@@ -12,7 +12,7 @@ export const Post: React.FC<PostProps> = ({
   const [comments, setComments] = useState<string[]>([])
   const [newCommentContent, setNewCommentContent] = useState("")
 
-  const handleSubmitComment = (event) => {
+  const handleSubmitComment = (event: React.FormEvent<HTMLFormElement>,) => {
     event.preventDefault()
     const trimmedComment = newCommentContent.trim()
     if (trimmedComment) {
